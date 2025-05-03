@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpt2-k8s-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpt2-k8s
+  template:
+    metadata:
+      labels:
+        app: gpt2-k8s
+    spec:
+      containers:
+        - name: gpt2-k8s-container  # Pod 中容器的名字，只是一个标识容器本身的标签
+          image: gpt2-k8s-backend:latest  # 本地构建的镜像
+          imagePullPolicy: Never   # ❗一定要加上！，否则Kubernetes 会默认尝试去远程拉取镜像，而不是使用你刚刚本地构建的
+          ports:
+            - containerPort: 6006
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
