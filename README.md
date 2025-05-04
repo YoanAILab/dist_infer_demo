@@ -45,10 +45,10 @@ pip install -r requirements_dist_infer.txt --index-url https://download.pytorch.
 
 requirements_dist_infer.txt:
 ```bash
-torch==2.6.0+cu118
-transformers==4.36.2
-flask==2.2.5
-numpy==1.26.4
+torch==2.6.0+cu118       # ✅ 使用 PyTorch 官方 CUDA 11.8 版本
+transformers==4.36.2     # ✅ 与 HuggingFace GPT-2 兼容
+flask==2.2.5             # ✅ 若后续添加 Web 接口服务
+numpy==1.26.4            # ✅ 推理输出处理所需
 ```
 
 ---
